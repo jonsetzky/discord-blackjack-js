@@ -8,7 +8,7 @@ PUBLIC_KEY=<public-key>
 PRIVATE_KEY=<private-key>
 ```
 
-Create the docker image 
+Create the docker image
 
 `docker build . -t discord-blackjack-js`
 

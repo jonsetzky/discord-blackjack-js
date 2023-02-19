@@ -1,0 +1,14 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  bot:
+    build: .
+    image: discord-blackjack-js
+    env_file:
+      - .env
+    volumes:
+      - db:/usr/src/app/db
+    container_name: discord-blackjack
+volumes:
+  logvolume01: {}
+  db:
+    name: discord-bot-data
