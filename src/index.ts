@@ -9,6 +9,7 @@ import {
 	AudioPlayerStatus,
 	VoiceConnectionStatus,
 } from '@discordjs/voice';
+import { SQLiteDB } from './db-sqlite.js';
 
 const commands = [
     {
@@ -20,6 +21,8 @@ const commands = [
         description: 'Replies with the number of interactions by the user.',
     },
 ];
+
+const db = new SQLiteDB();
 
 const rest = new REST({ version: '10' }).setToken(config.BOT_TOKEN);
 
@@ -50,9 +53,17 @@ client.on('interactionCreate', async (interaction) => {
     const username = interaction.user.username;
     const command = interaction.commandName;
 
+    // increment interaction counter
+    const lastCount = await db.has(username) ? await db.get<number>(username) : 0;
+    db.set(username, lastCount + 1);
+
     switch (command) {
         case 'ping':
             await interaction.reply('Pong!');
+            break;
+
+        case 'interactions':
+            await interaction.reply(`${username}: ${lastCount+1}`);
             break;
 
         default:
