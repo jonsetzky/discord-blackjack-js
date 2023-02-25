@@ -5,8 +5,9 @@
     "author": "jonsetzky@gmail.com",
     "main": "index.js",
     "scripts": {
-      "start": "docker-compose up -d --no-deps --build",
-      "test": "node ./index.js"
+        "start": "docker-compose up -d --no-deps --build",
+        "prettier": "npx prettier --write .",
+        "test": "node ./index.js"
     },
     "dependencies": {
       "discord.js": "^14.7.1",
@@ -15,5 +16,8 @@
       "eslint": "^8.34.0",
       "@keyv/sqlite": "^3.6.4",
       "keyv": "^4.5.2"
+    },
+    "devDependencies": {
+        "prettier": "2.8.4",
     }
 }
